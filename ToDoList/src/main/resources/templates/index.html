@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo List</title>
+    <script src="/js/jquery-3.4.0.min.js"></script>
+    <script src="/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+<div id="update-work">
+    <form>
+        <h2>Изменить дело</h2>
+        <label>Заголовок:</label>
+        <input type="text" name="name" value="">
+        <label>Описание дела:</label>
+        <input type="text" name="description" value="">
+        <hr>
+        <button id="update-work-button">Сохранить</button>
+    </form>
+</div>
+<div id="work-form">
+    <form>
+        <h2>Добавление дела</h2>
+        <label>Заголовок:</label>
+        <input type="text" name="name" value="">
+        <label>Описание дела:</label>
+        <input type="text" name="description" value="">
+        <hr>
+        <button id="save-work">Сохранить</button>
+    </form>
+</div>
+<h1>Список дел</h1>
+<button id="show-add-work-form">Добавить дело</button>
+<button id="show-description">Показать/скрыть описания</button>
+<br><br>
+<button id="delete-works">Удалить список дел</button>
+<br><br>
+<div id="work-list">
+    <div th:each="work : ${works}" th:attr="id=${'div-' + work.id}">
+        <h4 th:text="${work.name}"></h4>
+        <div class="work-show" th:text="${work.description}"></div>
+        <button class="delete-work" th:attr="data-id=${work.id}">Удалить</button>
+        <button class="update-work" th:attr="data-id=${work.id}">Изменить</button>
+    </div>
+</div>
+</body>
+</html>
